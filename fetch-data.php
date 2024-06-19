@@ -39,120 +39,84 @@ if (count($applications) == 0) {
         </div>
     </div>';
 } else {
-    require_once('includes/security.php');
-    echo '<div class="grid-container">';
+    echo '<div class="wrapper-masonry">
+    <div id="masonry-container">
+    ';
     foreach ($applications as $index => $item) {
         $applicationId = $item['application_id'];
         $applicationTitle = htmlspecialchars($item['application_title']);
-        $applicationDescription = nl2br(htmlspecialchars(($item['application_description'])));
+        $applicationDescription = nl2br(htmlspecialchars($item['application_description']));
         $applicationLink = htmlspecialchars($item['application_link']);
         $applicationColor = htmlspecialchars($item['application_color']);
         $applicationImage = htmlspecialchars($item['application_image']);
         $directory = 'img/uploads/';
         $path = $directory . basename($applicationImage);
 
-        // Determine card size and orientation dynamically based on index
-        $cardSizeClass = '';
-        switch ($index % 8) {
-            case 0:
-                $cardSizeClass = 'grid-item-span1-1';
-                break;
-            case 1:
-                $cardSizeClass = 'grid-item-span1-2';
-                break;
-            case 2:
-                $cardSizeClass = 'grid-item-span2-1';
-                break;
-            case 3:
-                $cardSizeClass = 'grid-item-span2-2';
-                break;
-            case 4:
-                $cardSizeClass = 'grid-item-span3-1';
-                break;
-            case 5:
-                $cardSizeClass = 'grid-item-span3-2';
-                break;
-            case 6:
-                $cardSizeClass = 'grid-item-span4-1';
-                break;
-            case 7:
-                $cardSizeClass = 'grid-item-span4-2';
-                break;
-        }
-
         // Output the card HTML
-        echo '
-        <div class="grid-item card ' . $cardSizeClass . '" style="background-color: ' . $applicationColor . ';">
-            <a class="text-decoration-none" href="' . $applicationLink . '" target="_blank">
-                <img src="' . $path . '" class="card-img-top" alt="' . $applicationTitle . '">
-                <div class="card-body">
-                    <h4 class="card-title">' . $applicationTitle . '</h4>
-                    <figcaption class="blockquote-footer mt-2 card-text">' . $applicationDescription . '</figcaption>
-                </div>
-            </a>';
-
-        // Check if the user is an admin and assigned for managing this application data
+        echo '<div class="grid-cards" style="background-color: ' . $applicationColor . ';">
+                <a href="' . $applicationLink . '" target="_blank">  
+                    <img src="' . $path . '" alt="' . $applicationTitle . '">
+                    <h4>' . $applicationTitle . '</h4>
+                    <p>' . $applicationDescription . '</p>
+                </a>';
         if (isset($_SESSION['admin_id']) && isAdminForApplication($_SESSION['admin_id'], $applicationId, $pdo)) {
-            echo '
-            <div class="card-footer">
-                <a href="#" class="btn btn-primary edit-btn" data-toggle="modal" data-target="#editModal' . $applicationId . '">Edit</a>
-                <a href="#" class="btn btn-danger delete-btn" data-application-id="' . $applicationId . '">Delete</a>
-            </div>';
+            echo '<div class="btn-container d-flex align-items-center justify-content-start">
+                    <a href="#" role="button" class="edit-button" data-toggle="modal" data-target="#editModal' . $applicationId . '">Edit</a>
+                    <a href="#" role="button" class="delete-button" data-application-id="' . $applicationId . '">Delete</a>
+                  </div>';
         }
-
         echo '</div>';
 
         // Output the edit modal for each card
-        echo '
-        <div class="modal fade" id="editModal' . $applicationId . '" tabindex="-1" role="dialog" aria-labelledby="editModalLabel' . $applicationId . '" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="editModalLabel' . $applicationId . '">Edit Application</h1>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form enctype="multipart/form-data" method="POST" action="edit-application.php">
-                            <input type="hidden" name="csrf_token" value="' . generateCSRFToken() . '">
-                            <input type="hidden" name="editAppId" value="' . $applicationId . '">
-                            <input type="hidden" name="existingImagePath" value="' . $path . '">
-                            <div class="form-group">
-                                <label for="editAppImage">Upload Image</label>
-                                <input type="file" class="form-control-file" id="editAppImage" name="editAppImage" accept="image/png, image/jpeg, image/jpg" onchange="previewEditImage(' . $applicationId . ')">
-                                <div class="image-container" id="preview-edit-image-container-' . $applicationId . '">
-                                    <img id="preview-edit-image-' . $applicationId . '" class="preview-image img-fluid mx-auto" alt="Preview" src="' . $path . '">
+        echo '<div class="modal fade" id="editModal' . $applicationId . '" tabindex="-1" role="dialog" aria-labelledby="editModalLabel' . $applicationId . '" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="editModalLabel' . $applicationId . '">Edit Application</h1>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form enctype="multipart/form-data" method="POST" action="edit-application.php">
+                                <input type="hidden" name="csrf_token" value="' . generateCSRFToken() . '">
+                                <input type="hidden" name="editAppId" value="' . $applicationId . '">
+                                <input type="hidden" name="existingImagePath" value="' . $path . '">
+                                <div class="form-group">
+                                    <label for="editAppImage">Upload Image</label>
+                                    <input type="file" class="form-control-file" id="editAppImage" name="editAppImage" accept="image/png, image/jpeg, image/jpg" onchange="previewEditImage(' . $applicationId . ')">
+                                    <div class="image-container" id="preview-edit-image-container-' . $applicationId . '">
+                                        <img id="preview-edit-image-' . $applicationId . '" class="preview-image img-fluid mx-auto" alt="Preview" src="' . $path . '">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="editAppTitle">Title</label>
-                                <input type="text" class="form-control" id="editAppTitle" name="editAppTitle" placeholder="Enter title" value="' . $applicationTitle . '">
-                            </div>
-                            <div class="form-group">
-                                <label for="editAppDescription">Description</label>
-                                <textarea class="form-control" id="editAppDescription" name="editAppDescription" rows="5" placeholder="Enter description">' . $applicationDescription . '</textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="editAppLink">Reference Link</label>
-                                <input type="url" class="form-control" id="editAppLink" name="editAppLink" placeholder="Enter reference link" value="' . $applicationLink . '">
-                            </div>
-                            <div class="form-group">
-                                <label for="editAppColor" id="colorSelector">Pick a Background Color:</label>
-                                <input type="color" class="form-control" id="editAppColor' . $applicationId . '" name="editAppColor" value="' . $applicationColor . '">
-                                <div class="color-label">
-                                    <strong>Hex Code:</strong><span id="colorCode' . $applicationId . '">' . $applicationColor . '</span>
+                                <div class="form-group">
+                                    <label for="editAppTitle">Title</label>
+                                    <input type="text" class="form-control" id="editAppTitle" name="editAppTitle" placeholder="Enter title" value="' . $applicationTitle . '">
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary" id="submitEditBtn">Submit</button>
-                            </div>
-                        </form>
+                                <div class="form-group">
+                                    <label for="editAppDescription">Description</label>
+                                    <textarea class="form-control" id="editAppDescription" name="editAppDescription" rows="5" placeholder="Enter description">' . $applicationDescription . '</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editAppLink">Reference Link</label>
+                                    <input type="url" class="form-control" id="editAppLink" name="editAppLink" placeholder="Enter reference link" value="' . $applicationLink . '">
+                                </div>
+                                <div class="form-group">
+                                    <label for="editAppColor" id="colorSelector">Pick a Background Color:</label>
+                                    <input type="color" class="form-control" id="editAppColor' . $applicationId . '" name="editAppColor" value="' . $applicationColor . '">
+                                    <div class="color-label">
+                                        <strong>Hex Code:</strong><span id="colorCode' . $applicationId . '">' . $applicationColor . '</span>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary" id="submitEditBtn">Submit</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>';
+            </div>';
     }
-    echo '</div>';
+    echo '</div></div>';
 }
 ?>

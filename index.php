@@ -12,9 +12,14 @@ require_once(__DIR__ . '/includes/home-function.php');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
+    <!-- External CSS -->
+    <link rel="stylesheet" href="./css/masonry-layout.css">
+    <link rel="stylesheet" href="./css/masonry.css">
+
+
     <!-- logo icon image/x-icon  -->
     <link rel="icon" href="img/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/home.css" />
+    <!-- <link rel="stylesheet" href="css/home.css" /> -->
     <link rel="stylesheet" href="css/menu.css" />
     <link rel="manifest" href="manifest.json">
 </head>
@@ -91,6 +96,8 @@ require_once(__DIR__ . '/includes/home-function.php');
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+    <script src="./js/masonry-1.js"></script>
+    <script src="./js/masonry-layout-vanilla.min.js"></script>
     <script src="js/header.js"></script>
     <script src="js/script.js"></script>
     <script src="js/menu.js"></script>

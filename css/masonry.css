@@ -1,0 +1,85 @@
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+* {
+    box-sizing: border-box;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #e0e1e2;
+    margin: 0;
+}
+
+a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.grid-cards > a > img {
+    width: 100%;
+    min-height: 100%;
+    display: block;
+    margin: 5px auto 10px auto;
+    border-radius: 2px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s;
+    object-fit: fill;
+}
+
+.btn-container {
+    gap: 7px;
+}
+
+.edit-button {
+    border: none;
+    background-color: #303090;
+    border-radius: 7px;
+    padding: 4px 2rem;
+}
+
+.edit-button:hover {
+    background-color: #2d2dd1;
+    text-decoration: none;
+    color: #000000;
+}
+
+.delete-button {
+    border: none;
+    background-color: #903030;
+    border-radius: 7px;
+    padding: 4px 2rem;
+    text-decoration: none;
+}
+.delete-button:hover {
+    background-color: #c82929;
+    text-decoration: none;
+    color: #000000;
+}
+
+.grid-cards {
+    background-color: white;
+    margin-bottom: 2rem;
+    padding: 10px;
+    animation: fadeIn 1s;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.grid-cards > h4 {
+    color: #131313;
+    margin-bottom: 1rem;
+}
+
+.grid-cards > a:hover {
+    color: rgb(42, 96, 214);
+    text-decoration: none;
+}

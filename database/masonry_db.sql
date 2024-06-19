@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2024 at 04:18 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Jun 19, 2024 at 11:23 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -53,7 +53,7 @@ CREATE TABLE `application_tbl` (
   `admin_id` int(11) NOT NULL,
   `application_image` varchar(255) NOT NULL,
   `application_title` varchar(255) NOT NULL,
-  `application_description` varchar(255) NOT NULL,
+  `application_description` text NOT NULL,
   `application_link` varchar(255) NOT NULL,
   `application_color` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -64,14 +64,12 @@ CREATE TABLE `application_tbl` (
 --
 
 INSERT INTO `application_tbl` (`application_id`, `admin_id`, `application_image`, `application_title`, `application_description`, `application_link`, `application_color`, `created_at`) VALUES
-(1, 1, 'img/uploads/img1.jfif', 'Brick Paneling System: Transform Your Space', 'Explore the timeless elegance of brick paneling and discover how it can breathe new life into any interior or exterior. Our site offers a comprehensive guide on various brick paneling styles, installation techniques, and maintenance tips.', 'https://oldmillbuildingproducts.com', '#9ebe5b', '2024-06-19 02:04:55'),
-(2, 1, 'img/uploads/img1.jfif', 'Stone Veneer Panel System: Elevate Your Décor', 'Dive into the world of stone veneer panels and uncover a myriad of design possibilities for your home or office. From rustic charm to modern sophistication, our site provides in-depth insights into the versatility and durability of stone veneer.', 'https://oldmillbuildingproducts.com', '#3eacd0', '2024-06-19 02:05:59'),
-(3, 1, 'img/uploads/img1.jfif', 'Faux Brick Wall Panel System: The Art of Authenticity', 'Immerse yourself in the authenticity of faux brick wall panels. Our site is your go-to resource for understanding the craftsmanship behind faux brick, offering guidance on selecting the perfect style and achieving flawless installation.', 'https://oldmillbuildingproducts.com', '#9ebe5b', '2024-06-19 02:07:25'),
-(4, 1, 'img/uploads/img1.jfif', 'Sustainable Masonry Panel Solutions: Go Green with Panels', 'Embrace sustainability without compromising on style with our range of eco-friendly masonry panels. Explore innovative materials and construction techniques that minimize environmental impact while maximizing aesthetic appeal.', 'https://oldmillbuildingproducts.com', '#3eacd0', '2024-06-19 02:08:19'),
-(5, 1, 'img/uploads/img1.jfif', 'Brick Cladding System: Timeless Beauty, Modern Application', 'Discover the enduring allure of brick cladding and its contemporary applications. Our site is dedicated to showcasing the versatility of brick, from classic reds to trendy whites, and providing expert advice on integrating brick cladding into your design.', 'https://oldmillbuildingproducts.com', '#9ebe5b', '2024-06-19 02:09:15'),
-(6, 1, 'img/uploads/img1.jfif', 'Cultured Stone Panel System: Redefining Elegance', 'Redefine elegance with cultured stone panels. Our site offers a comprehensive look into the world of cultured stone, including design inspirations, installation guides, and maintenance tips to help you achieve a luxurious finish in any space.', 'https://oldmillbuildingproducts.com', '#3eacd0', '2024-06-19 02:10:12'),
-(7, 1, 'img/uploads/img1.jfif', 'Brick Effect Wall Panels: Timeless Charm, Effortless Installation', 'Experience the timeless charm of brick with the ease of installation provided by brick effect wall panels. Our site is your ultimate destination for exploring the latest trends, tips, and tricks for incorporating brick textures into your interior design e', 'https://oldmillbuildingproducts.com', '#9ebe5b', '2024-06-19 02:11:26'),
-(8, 1, 'img/uploads/img1.jfif', 'Modern Masonry: Innovative Panel Solutions', 'Step into the future of masonry with our collection of innovative panel solutions. From sleek, minimalist designs to bold, statement-making styles, our site showcases the latest advancements in masonry technology and design.', 'https://oldmillbuildingproducts.com', '#3eacd0', '2024-06-19 02:12:06');
+(13, 1, 'img/uploads/house.jpg', 'Modern Contemporary Home', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, labore rerum veritatis dolor deleniti', 'https://www.moving.com/tips/what-is-a-contemporary-home/', '#ff6161', '2024-06-19 08:59:52'),
+(14, 1, 'img/uploads/pexels-meike-664865296-25881122.jpg', 'Modern Contemporary Home', 'Lorem ipsum', 'https://www.moving.com/tips/what-is-a-contemporary-home/', '#a27171', '2024-06-19 09:00:48'),
+(15, 1, 'img/uploads/img5.jpg', 'Modern Contemporary Home', 'Dog, (Canis lupus familiaris), domestic mammal of the family Canidae (order Carnivora). It is a subspecies of the gray wolf (Canis lupus) and is related to foxes and jackals. The dog is one of the two most ubiquitous and most popular domestic animals in t', 'https://www.moving.com/tips/what-is-a-contemporary-home/', '#7ed2d7', '2024-06-19 09:01:49'),
+(16, 1, 'img/uploads/contemporary.jpg', 'Modern Contemporary Home', 'Dog, (Canis lupus familiaris), domestic mammal of the family Canidae (order Carnivora). It is a subspecies of the gray wolf (Canis lupus) and is related to foxes and jackals. The dog is one of the two most ubiquitous and most popular domestic animals in t', 'https://www.moving.com/tips/what-is-a-contemporary-home/', '#50dc5a', '2024-06-19 09:02:28'),
+(17, 1, 'img/uploads/pexels-kateryna-tsurik-505461005-26289411.jpg', 'Modern Women', 'Adjectives are powerful tools for describing people, and when it comes to describing women, the choices of words we use can have a big impact on how we perceive and treat them. In this blog post, we will explore some adjectives that can be used to describ', 'https://www.moving.com/tips/what-is-a-contemporary-home/', '#f2968c', '2024-06-19 09:10:00'),
+(18, 1, 'img/uploads/pexels-bilalfurkankosar-21914541.jpg', 'Modern Contemporary Home', 'When we try to find the right word to describe someone, we think about their abilities and the word that could represent a person who possesses those abilities. For example, when we say that&quot; My best friend is resourceful.&quot; I help you understand that my friend has a lot of knowledge and she can come up with creative solutions. Here is a list of words to help you describe other women based on their abilities.\r\nWhen it comes to describing strong women, there are countless words that can be used to highlight their unique qualities and strengths. Here are some examples of words that can be used to describe strong women:', 'https://www.moving.com/tips/what-is-a-contemporary-home/', '#d9ec79', '2024-06-19 09:21:52');
 
 --
 -- Indexes for dumped tables
@@ -104,7 +102,7 @@ ALTER TABLE `admin_tbl`
 -- AUTO_INCREMENT for table `application_tbl`
 --
 ALTER TABLE `application_tbl`
-  MODIFY `application_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `application_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables

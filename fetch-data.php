@@ -58,6 +58,7 @@ if (count($applications) == 0) {
                     <img src="' . $path . '" alt="' . $applicationTitle . '">
                     <h4>' . $applicationTitle . '</h4>
                     <p>' . $applicationDescription . '</p>
+                    
                 </a>';
         if (isset($_SESSION['admin_id']) && isAdminForApplication($_SESSION['admin_id'], $applicationId, $pdo)) {
             echo '<div class="btn-container d-flex align-items-center justify-content-start">
